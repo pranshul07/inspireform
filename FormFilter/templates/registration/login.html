@@ -1,3 +1,4 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +7,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <style>
+
+    body {
+        background-image: url("{% static 'images/1.jpg'%}");
+    }
 
     h2 {
         text-align: center;
@@ -43,6 +48,8 @@
 </head>
 <body>
 
+<img src="{% static 'images/logo.png'%}" height="100px" width="150px" style="padding-left:40px; padding-top: 40px">
+
 
 
 {% if form.errors %}
@@ -51,10 +58,10 @@
 
 {% if next %}
     {% if user.is_authenticated %}
-    <p>Your account doesn't have access to this page. To proceed,
+    <p style="color: chartreuse">Your account doesn't have access to this page. To proceed,
     please login with an account that has access.</p>
     {% else %}
-    <h2>Please login to see this page.</h2>
+    <h2 style="color: chartreuse">Please login to see this page.</h2>
     {% endif %}
 {% endif %}
 
@@ -62,12 +69,12 @@
 {% csrf_token %}
 
 <div class="mnop">
-  <div >{{ form.username.label_tag }}</div>
+  <div style="color: chartreuse">{{ form.username.label_tag }}</div>
   <div>{{ form.username }}</div>
 </div>
 
 <div class="mnop">
-  <div>{{ form.password.label_tag }}</div>
+  <div style="color: chartreuse">{{ form.password.label_tag }}</div>
   <div>{{ form.password }}</div>
 </div>
 
