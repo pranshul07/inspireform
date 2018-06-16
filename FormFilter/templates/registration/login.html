@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>RN Inspire Pvt. Ltd.</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<style>
+
+    h2 {
+        text-align: center;
+        padding-bottom: 50px;
+    }
+
+    .mnop  {
+
+        padding:2px;
+        margin-left:40%;
+    }
+
+    .button {
+    background-color: #bfbfbf; /* Green */
+    border: none;
+    color: black;
+    padding: 8px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-left:40%;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+
+    p {
+        margin:30px;
+        text-align: center;
+        font-weight: bold;
+    }
+</style>
+
+</head>
+<body>
+
+
+
+{% if form.errors %}
+<p>Your username and password didn't match. Please try again.</p>
+{% endif %}
+
+{% if next %}
+    {% if user.is_authenticated %}
+    <p>Your account doesn't have access to this page. To proceed,
+    please login with an account that has access.</p>
+    {% else %}
+    <h2>Please login to see this page.</h2>
+    {% endif %}
+{% endif %}
+
+<form method="post" action="{% url 'login' %}">
+{% csrf_token %}
+
+<div class="mnop">
+  <div >{{ form.username.label_tag }}</div>
+  <div>{{ form.username }}</div>
+</div>
+
+<div class="mnop">
+  <div>{{ form.password.label_tag }}</div>
+  <div>{{ form.password }}</div>
+</div>
+
+<div>
+  <input type="submit" value="login" class="button" style />
+  <input type="hidden" name="next" value="{{ next }}" />
+</div>
+</form>
+
+</body>
+</html>

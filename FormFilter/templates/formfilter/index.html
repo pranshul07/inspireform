@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>RN Inspire Pvt. Ltd. </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+  /*
+ul {
+    list-style-position: inside;
+   list-style-type: none;
+    padding:10px;
+    margin:0;
+    margin-bottom:20px;
+    margin-top:20px;
+}
+
+li {
+
+margin-bottom:10px;
+margin-top:10px;
+border-bottom:1px solid grey;
+overflow: auto;
+height:80px;
+}
+
+.abc {
+
+float:left;
+width:19%;
+border-style:inset;
+display:inline-block;
+text-align:center
+}
+
+.abcx {
+
+float:left;
+width:32%;
+border-style:inset;
+display:inline-block;
+text-align:center
+}
+
+.abcy {
+
+float:left;
+width:15.5%;
+border-style:inset;
+display:inline-block;
+text-align:center;
+
+}
+
+.pqr div {padding:5px;}
+
+
+
+ h3 {
+border-bottom:1px solid grey;
+padding-bottom:20px;
+margin-bottom:0;
+} */
+
+  .button {
+    background-color: #e6e6e6;
+    border: none;
+    color: black;
+    padding: 8px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 10px;
+    cursor: pointer;}
+
+</style>
+</head>
+<body>
+
+<div style="text-align: center; margin:20px">
+ {% if user.is_authenticated %}
+     <h4 style="padding: 10px;">User: {{ user.get_username }}</h4>
+     <h4 class="button"><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></h4>
+ {% endif %}
+</div>
+<br>
+<div class="container">
+  <h2>Form Table Filter</h2>
+  <input class="form-control" id="myInput" type="text" placeholder="Search..">
+  <br>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+          <th>Submission Date</th>
+          <th>Position Applied For</th>
+          <th>Company</th>
+          <th>Current CTC</th>
+          <th>Expected CTC</th>
+          <th>Name</th>
+          <th>Mob. No</th>
+          <th>Other Details</th>
+      </tr>
+    </thead>
+
+      {% for aa, bb, cc, dd, ee, ff, gg, hh, ii, jj, id in table %}
+    <tbody id="myTable">
+      <tr>
+          <td>{{ aa }}</td>
+          <td>{{ bb }}</td>
+          <td>{{ cc }}</td>
+          <td>{{ dd }}</td>
+          <td>{{ ee }}</td>
+          <td>{{ hh }}</td>
+          <td>{{ ii }}</td>
+          <td><a href="{% url 'details' id %}" >click</a></td>
+
+      </tr>
+    </tbody>
+      {% endfor %}
+  </table>
+</div>
+
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+
+</body>
+</html>
+
+
+
+
