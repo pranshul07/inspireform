@@ -41,17 +41,17 @@ def details(request, id):
     wb = xlrd.open_workbook(loc)
     sheet = wb.sheet_by_index(0)
     ls = []
-    for ww in range(0, 66):
+    for ww in range(0, 67):
         ls.append(chr(50 + ww))
         ls[ww] = []
 
-    for j in range(0, 66):
+    for j in range(0, 67):
         ls[j].append(str(sheet.cell_value(int(id), j)))
 
     abcd = "zip("
-    for n in range(0, 66):
+    for n in range(0, 67):
         abcd += "ls[" + str(n) + "]"
-        if n < 65:
+        if n < 66:
             abcd += ", "
 
     abcd += ")"
